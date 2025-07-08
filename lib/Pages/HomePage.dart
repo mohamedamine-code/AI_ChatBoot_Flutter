@@ -10,7 +10,12 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  TextEditingController controller =TextEditingController();
+  TextEditingController controller = TextEditingController();
+  //[[user,reponse]]
+  List converstion=[
+    ['hey','Yoo'],
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,25 +31,20 @@ class _HomepageState extends State<Homepage> {
               flex: 7,
               child: ListView.builder(
                 itemCount: 1,
-                itemBuilder: (context, index) =>Container(
-                  // color: Colors.orange,
+                itemBuilder: (context, index) => Container(
                   child: Column(
-                    // mainAxisSize: MainAxisSize.max,
                     children: [
-                        Textmessage(msg: 'Yoo!',isUser: false,),
-                        SizedBox(height: 7,),
-                        Textmessage(msg: controller.text,isUser: true,),
+                      Textmessage(msg: converstion[index][0], isUser: true),
+                      SizedBox(height: 7),
+                      Textmessage(msg: converstion[index][1], isUser: false),
+                      
+                      
                     ],
                   ),
                 ),
               ),
             ),
-            Expanded(
-            flex: 1,
-            child:Userinput(
-              controller: controller,
-            ),
-            ),
+            Expanded(flex: 1, child: Userinput(controller: controller)),
           ],
         ),
       ),
