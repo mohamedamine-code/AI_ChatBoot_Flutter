@@ -11,13 +11,28 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   TextEditingController controller = TextEditingController();
-  //[[user,reponse]]
-  List converstion=[
-    ['hey','Yoo'],
+
+      //[[user,reponse]]
+      List converstion=[
+
   ];
+    void tiggerConverstion(TextEditingController controller){
+    final String userInput=controller.text;
+    String reponse;
+    if(userInput=="yoo"){
+      reponse="hh Bro yoo";
+    }else{
+      reponse="Noo bro do it agian !";
+    }
+    setState(() {
+      converstion.add([userInput,reponse]);
+    });
+    controller.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(title: Text("Yoo Bro !"), centerTitle: true),
       drawer: Drawer(),
@@ -30,21 +45,21 @@ class _HomepageState extends State<Homepage> {
             Expanded(
               flex: 7,
               child: ListView.builder(
-                itemCount: 1,
+                itemCount: converstion.length,
                 itemBuilder: (context, index) => Container(
                   child: Column(
                     children: [
                       Textmessage(msg: converstion[index][0], isUser: true),
                       SizedBox(height: 7),
                       Textmessage(msg: converstion[index][1], isUser: false),
-                      
-                      
                     ],
                   ),
                 ),
               ),
             ),
-            Expanded(flex: 1, child: Userinput(controller: controller)),
+            Expanded(flex: 1, child: Userinput(controller: controller,onTap:(){
+              tiggerConverstion(controller);
+            })),
           ],
         ),
       ),
