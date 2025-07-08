@@ -11,28 +11,34 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   TextEditingController controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
-      //[[user,reponse]]
-      List converstion=[
-
-  ];
-    void tiggerConverstion(TextEditingController controller){
-    final String userInput=controller.text;
+  //[[user,reponse]]
+  List<List<String>> converstion = [];
+  void tiggerConverstion(TextEditingController controller) {
+    final String userInput = controller.text;
     String reponse;
-    if(userInput=="yoo"){
-      reponse="hh Bro yoo";
-    }else{
-      reponse="Noo bro do it agian !";
+    if (userInput == "yoo") {
+      reponse = "hh Bro yoo";
+    } else {
+      reponse = "Noo bro do it agian !";
     }
     setState(() {
-      converstion.add([userInput,reponse]);
+      converstion.add([userInput, reponse]);
     });
     controller.clear();
+    // 👇 Scroll to bottom after short delay
+    Future.delayed(Duration(milliseconds: 100), () {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(title: Text("Yoo Bro !"), centerTitle: true),
       drawer: Drawer(),
@@ -45,6 +51,7 @@ class _HomepageState extends State<Homepage> {
             Expanded(
               flex: 7,
               child: ListView.builder(
+                controller: _scrollController,
                 itemCount: converstion.length,
                 itemBuilder: (context, index) => Container(
                   child: Column(
@@ -57,9 +64,15 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
             ),
-            Expanded(flex: 1, child: Userinput(controller: controller,onTap:(){
-              tiggerConverstion(controller);
-            })),
+            Expanded(
+              flex: 1,
+              child: Userinput(
+                controller: controller,
+                onTap: () {
+                  tiggerConverstion(controller);
+                },
+              ),
+            ),
           ],
         ),
       ),
