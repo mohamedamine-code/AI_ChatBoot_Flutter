@@ -15,6 +15,8 @@ class _HomepageState extends State<Homepage> {
 
   //[[user,reponse]]
   List<List<String>> converstion = [];
+
+
   void tiggerConverstion(TextEditingController controller) {
     final String userInput = controller.text;
     String reponse;
