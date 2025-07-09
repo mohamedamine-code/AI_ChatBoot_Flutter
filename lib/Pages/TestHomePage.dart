@@ -13,9 +13,7 @@ class _TestHomePageState extends State<TestHomePage> {
   final TextEditingController _controller = TextEditingController();
   final List<Map<String, dynamic>> messages = [];
   final ScrollController _scrollController = ScrollController();
-
-  final String apiKey = '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'; // 👈 Paste your OpenRouter API key here
-
+  final String apiKey = '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'; // 👈 Paste your OpenRouter API key here
   Future<void> sendMessage(String userMessage) async {
     setState(() {
       messages.add({'role': 'user', 'msg': userMessage});
@@ -68,7 +66,9 @@ class _TestHomePageState extends State<TestHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("DeepSeek AI Chat")),
+      appBar: AppBar(
+        title: const Text("DeepSeek AI Chat"),
+        ),
       body: Column(
         children: [
           Expanded(
