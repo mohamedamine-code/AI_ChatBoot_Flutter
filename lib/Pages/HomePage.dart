@@ -18,7 +18,7 @@ class _HomepageState extends State<Homepage> {
   //[[user,reponse]]
   List<Map<String, dynamic>> converstion = [];
   final String apiKey =
-      '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';
+      '';
   Future<void> sendMessage(String userMessage) async {
     controller.clear();
     setState(() {
