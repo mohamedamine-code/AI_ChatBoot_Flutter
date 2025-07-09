@@ -13,7 +13,7 @@ class _TestHomePageState extends State<TestHomePage> {
   final TextEditingController _controller = TextEditingController();
   final List<Map<String, dynamic>> messages = [];
   final ScrollController _scrollController = ScrollController();
-  final String apiKey = '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'; // 👈 Paste your OpenRouter API key here
+  final String apiKey = ''; // 👈 Paste your OpenRouter API key here
   Future<void> sendMessage(String userMessage) async {
     setState(() {
       messages.add({'role': 'user', 'msg': userMessage});
